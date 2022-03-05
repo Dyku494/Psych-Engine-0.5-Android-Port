@@ -223,7 +223,7 @@ class TitleState extends MusicBeatState
 			gfDance.animation.addByIndices('danceRight', 'psykaDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		}
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
-		add(gfDance);
+		//add(gfDance);
 		add(backgroundTitle);
 		gfDance.shader = swagShader.shader;
 		add(logoBl);
@@ -470,50 +470,42 @@ class TitleState extends MusicBeatState
 		sickBeats++;
 		switch (sickBeats)
 		{
-		case 0:
-			deleteCoolText();
-		case 2:
-			createCoolText(['Dyku']);
-		case 6:
-			addMoreText('Presenta');
-			logoSpr.visible = true;
-		case 8:
-			deleteCoolText();
-			logoSpr.visible = false;
-		case 10:
-			createCoolText([curWacky[0]]);
-		case 14:
-			addMoreText(curWacky[1]);
-			addMoreText(curWacky[2]);
-		case 16:
-			curWacky = FlxG.random.getObject(getIntroTextShit());
-			deleteCoolText();
-		case 18:
-			createCoolText([curWacky[0]]);
-		case 22:
-			addMoreText(curWacky[1]);
-			addMoreText(curWacky[2]);
-		case 24:
-			curWacky = FlxG.random.getObject(getIntroTextShit());
-			deleteCoolText();
-		case 26:
-			createCoolText([curWacky[0]]);
-		case 30:
-			addMoreText(curWacky[1]);
-			addMoreText(curWacky[2]);
-		case 32:
-			deleteCoolText();
-		case 34:
-			addMoreText('friday');
-		case 36:
-			addMoreText('night');
-		case 38:
-			addMoreText('funkin');
-		case 40:
-			addMoreText('vs');
-		case 42:
-			addMoreText('Dyku');
-		case 44:
+				case 1:
+					#if PSYCH_WATERMARKS
+					createCoolText(['Un mod hecho por'], 15);
+					#else
+					createCoolText(['Dyku', 'en sintesis', 'es', 'Dylan XD']);
+					#end
+				// credTextShit.visible = true;
+				case 3:
+					#if PSYCH_WATERMARKS
+					addMoreText('Dylan el pro', 15);
+					addMoreText('Divierte en', 15);
+					addMoreText('este mod facha', 15);
+					#else
+					addMoreText('Dyku presenta');
+					#end
+				// credTextShit.text += '\npresent...';
+				// credTextShit.addText();
+				case 4:
+					deleteCoolText();
+				// credTextShit.visible = false;
+				// credTextShit.text = 'In association \nwith';
+				// credTextShit.screenCenter();
+				case 5:
+					addMoreText('Friday');
+				// credTextShit.visible = true;
+				case 6:
+					addMoreText('Night');
+				// credTextShit.text += '\nNight';
+				case 7:
+					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				case 8:
+					addMoreText('vs'); // credTextShit.text += '\nFunkin';
+				case 9:
+					addMoreText('Dyku'); // credTextShit.text += '\nFunkin';
+
+				case 16:
 			skipIntro();
 		}
 	}
