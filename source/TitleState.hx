@@ -39,6 +39,7 @@ class TitleState extends MusicBeatState
 	static var initialized:Bool = false;
 
 	var blackScreen:FlxSprite;
+	var backgroundTitle:FlxSprite;
 	var credGroup:FlxGroup;
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
@@ -194,13 +195,18 @@ class TitleState extends MusicBeatState
 		add(bg);
 
 		logoBl = new FlxSprite(-150, -100);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl.frames = Paths.getSparrowAtlas('logoDyku');
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
-		logoBl.animation.play('bump');
+		logoBl.animation.addByPrefix('bump', 'logo dyku', 24);
+		logoBl.animation.play('dyk');
 		logoBl.updateHitbox();
 		logoBl.screenCenter(X);
 		// logoBl.color = FlxColor.BLACK;
+		
+		backgroundTitle = new FlxSprite().loadGraphic(Paths.image('dykuttitle'));
+		backgroundTitle.screenCenter();
+		backgroundTitle.antialiasing = ClientPrefs.globalAntialiasing;
+		
 
 		swagShader = new ColorSwap();
 		if(!FlxG.save.data.psykaEasterEgg || !easterEggEnabled) {
@@ -218,6 +224,7 @@ class TitleState extends MusicBeatState
 		}
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		//add(gfDance);
+		add(backgroundTitle);
 		gfDance.shader = swagShader.shader;
 		add(logoBl);
 		//logoBl.shader = swagShader.shader;
@@ -254,7 +261,7 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		logoSpr = new FlxSprite(0, FlxG.height * 0.4).loadGraphic(Paths.image('trollface'));
+		logoSpr = new FlxSprite(0, FlxG.height * 0.4).loadGraphic(Paths.image('dyku'));
 		add(logoSpr);
 		logoSpr.visible = false;
 		logoSpr.setGraphicSize(Std.int(logoSpr.width * 1));
@@ -463,46 +470,42 @@ class TitleState extends MusicBeatState
 		sickBeats++;
 		switch (sickBeats)
 		{
-		case 0:
-			deleteCoolText();
-		case 2:
-			createCoolText(['Troll Team']);
-		case 6:
-			addMoreText('Presents');
-			logoSpr.visible = true;
-		case 8:
-			deleteCoolText();
-			logoSpr.visible = false;
-		case 10:
-			createCoolText([curWacky[0]]);
-		case 14:
-			addMoreText(curWacky[1]);
-			addMoreText(curWacky[2]);
-		case 16:
-			curWacky = FlxG.random.getObject(getIntroTextShit());
-			deleteCoolText();
-		case 18:
-			createCoolText([curWacky[0]]);
-		case 22:
-			addMoreText(curWacky[1]);
-			addMoreText(curWacky[2]);
-		case 24:
-			curWacky = FlxG.random.getObject(getIntroTextShit());
-			deleteCoolText();
-		case 26:
-			createCoolText([curWacky[0]]);
-		case 30:
-			addMoreText(curWacky[1]);
-			addMoreText(curWacky[2]);
-		case 32:
-			deleteCoolText();
-		case 34:
-			addMoreText('We do');
-		case 36:
-			addMoreText('a little');
-		case 38:
-			addMoreText('trolling');
-		case 40:
+				case 1:
+					#if PSYCH_WATERMARKS
+					createCoolText(['Un mod hecho por'], 15);
+					#else
+					createCoolText(['Dyku', 'en sintesis', 'es', 'Dylan XD']);
+					#end
+				// credTextShit.visible = true;
+				case 3:
+					#if PSYCH_WATERMARKS
+					addMoreText('Dylan el pro', 15);
+					addMoreText('Divierte en', 15);
+					addMoreText('este mod facha', 15);
+					#else
+					addMoreText('Dyku presenta');
+					#end
+				// credTextShit.text += '\npresent...';
+				// credTextShit.addText();
+				case 4:
+					deleteCoolText();
+				// credTextShit.visible = false;
+				// credTextShit.text = 'In association \nwith';
+				// credTextShit.screenCenter();
+				case 5:
+					addMoreText('Friday');
+				// credTextShit.visible = true;
+				case 6:
+					addMoreText('Night');
+				// credTextShit.text += '\nNight';
+				case 7:
+					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				case 8:
+					addMoreText('vs'); // credTextShit.text += '\nFunkin';
+				case 9:
+					addMoreText('Dyku'); // credTextShit.text += '\nFunkin';
+
+				case 16:
 			skipIntro();
 		}
 	}
